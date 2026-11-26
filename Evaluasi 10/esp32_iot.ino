@@ -1,23 +1,13 @@
-/*
- * Proyek Mini: Dashboard Node-RED untuk Kontrol Relay dan Monitoring Suhu
- * - Kirim suhu DHT22 tiap 3 detik  -> iot/[NIM]/sensor/suhu
- * - Terima "ON"/"OFF" untuk relay   <- iot/[NIM]/aktuator/relay (GPIO 26)
- * - Terima PWM 0-255 untuk LED      <- iot/[NIM]/aktuator/pwm   (GPIO 2)
- *
- * Library: PubSubClient (Nick O'Leary), DHT sensor library (Adafruit),
- *          Adafruit Unified Sensor
- */
-
 #include <WiFi.h>
 #include <PubSubClient.h>
 #include "DHT.h"
 
 // ====== GANTI SESUAI KEBUTUHAN ======
-const char* WIFI_SSID = "Wokwi-GUEST";   // ganti dengan SSID WiFi kamu
-const char* WIFI_PASS = "";              // password WiFi (kosong untuk Wokwi)
+const char* WIFI_SSID = "Wokwi-GUEST"; 
+const char* WIFI_PASS = "";            
 const char* MQTT_SERVER = "broker.emqx.io";
 const int   MQTT_PORT = 1883;
-const char* NIM = "12345678";            // <-- ganti dengan NIM kamu
+const char* NIM = "2410010337";          
 // ====================================
 
 #define DHTPIN   4
@@ -101,9 +91,9 @@ void reconnect() {
 void setup() {
   Serial.begin(115200);
 
-  topicSuhu  = String("iot/") + NIM + "/sensor/suhu";
-  topicRelay = String("iot/") + NIM + "/aktuator/relay";
-  topicPwm   = String("iot/") + NIM + "/aktuator/pwm";
+  topicSuhu  = String("iot/") + 2410010337 + "/sensor/suhu";
+  topicRelay = String("iot/") + 2410010337+ "/aktuator/relay";
+  topicPwm   = String("iot/") + 2410010337 + "/aktuator/pwm";
 
   pinMode(RELAY_PIN, OUTPUT);
   digitalWrite(RELAY_PIN, LOW);
